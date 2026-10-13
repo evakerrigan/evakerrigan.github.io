@@ -31,6 +31,12 @@ npm run dev      # запуск dev-сервера на http://localhost:5173
 | `npm run format`       | Отформатировать код через Prettier          |
 | `npm run format:check` | Проверить форматирование без изменений      |
 
+### Деплой
+
+Сайт публикуется на GitHub Pages по адресу https://evakerrigan.github.io/.
+Каждый пуш в `main` собирает проект и выкладывает `dist` через GitHub Actions
+(`.github/workflows/deploy.yml`).
+
 ### Переменные окружения
 
 Доступ к переменным окружения идёт через единую валидированную точку входа
