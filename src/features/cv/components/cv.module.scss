@@ -134,12 +134,25 @@
     }
   }
 
+  &__meta {
+    flex: 0 0 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 3px;
+  }
+
   &__period {
     @include mono(13px);
-    flex: 0 0 150px;
     margin: 0;
-    padding-top: 3px;
+    line-height: inherit;
     color: $color-muted;
+  }
+
+  &__position {
+    @include mono(12px);
+    margin: 0;
+    line-height: inherit;
   }
 
   &__jobBody {
@@ -193,16 +206,16 @@
   &__shots {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 8px;
+    gap: 20px 28px;
+    margin-top: 14px;
   }
 
   &__shot {
     margin: 0;
-    width: 220px;
+    width: 180px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
 
   &__shotLink {
@@ -211,8 +224,8 @@
 
   &__shotImage {
     display: block;
-    width: 220px;
-    height: 138px;
+    width: 180px;
+    height: 113px;
     object-fit: cover;
     object-position: top;
     border: 1px solid $color-text;
@@ -265,8 +278,33 @@
     color: $color-muted;
   }
 
+  &__skillGroups {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  // Same two-column rhythm as the experience list: label left, tags right.
+  &__skillGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 32px;
+  }
+
+  &__skillLabel {
+    @include mono(13px);
+    flex: 0 0 150px;
+    margin: 0;
+    padding-top: 3px;
+    font-weight: 400;
+    line-height: inherit;
+    color: $color-muted;
+  }
+
   &__skills {
     @include mono(13px);
+    flex: 999 1 480px;
+    min-width: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 6px;

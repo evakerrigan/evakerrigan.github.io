@@ -34,7 +34,10 @@ const ExternalLink = ({ href, className, children }: ExternalLinkProps) => {
 
 const JobItem = ({ job }: { job: Job }) => (
   <article className={styles.cv__job}>
-    <p className={styles.cv__period}>{job.period}</p>
+    <div className={styles.cv__meta}>
+      <p className={styles.cv__period}>{job.period}</p>
+      {job.position && <p className={styles.cv__position}>{job.position}</p>}
+    </div>
     <div className={styles.cv__jobBody}>
       {job.isBreak ? (
         <p className={styles.cv__break}>{job.company}</p>
@@ -53,7 +56,11 @@ const JobItem = ({ job }: { job: Job }) => (
               {job.links?.map((link, index) => (
                 <Fragment key={link.url}>
                   {index > 0 && ', '}
-                  <ExternalLink href={link.url}>{link.label}</ExternalLink>
+                  {link.inactive ? (
+                    link.label
+                  ) : (
+                    <ExternalLink href={link.url}>{link.label}</ExternalLink>
+                  )}
                 </Fragment>
               ))}
             </span>
@@ -151,13 +158,20 @@ export const Cv = () => {
 
       <section className={styles.cv__section}>
         <h2 className={styles.cv__sectionTitle}>03 / Навыки</h2>
-        <ul className={styles.cv__skills}>
-          {skills.map((skill) => (
-            <li key={skill} className={styles.cv__skill}>
-              {skill}
-            </li>
+        <div className={styles.cv__skillGroups}>
+          {skills.map(({ group, items }) => (
+            <div key={group} className={styles.cv__skillGroup}>
+              <h3 className={styles.cv__skillLabel}>{group}</h3>
+              <ul className={styles.cv__skills}>
+                {items.map((skill) => (
+                  <li key={skill} className={styles.cv__skill}>
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section className={styles.cv__section}>
