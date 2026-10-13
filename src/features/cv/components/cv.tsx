@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from 'react';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import {
   contacts,
   education,
@@ -104,6 +105,7 @@ const JobItem = ({ job }: { job: Job }) => (
 export const Cv = () => {
   return (
     <div className={styles.cv}>
+      <ThemeToggle className={styles.cv__theme} />
       <header className={styles.cv__header}>
         <img
           className={styles.cv__photo}

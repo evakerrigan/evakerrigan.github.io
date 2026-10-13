@@ -5,6 +5,24 @@
   box-sizing: border-box;
 }
 
+// Тема ставится атрибутом data-theme на <html>: до отрисовки —
+// скриптом в index.html, потом — кнопкой (src/lib/theme.ts).
+:root {
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #555555;
+  --color-line: #d4d4d4;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #111111;
+  --color-text: #ececec;
+  --color-muted: #9a9a9a;
+  --color-line: #333333;
+  color-scheme: dark;
+}
+
 html {
   font-size: $font-size-base;
   line-height: 1.5;
@@ -14,6 +32,7 @@ body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   background-color: $color-main-bg;
+  color: $color-text;
   margin: 0;
   padding: 0;
 }

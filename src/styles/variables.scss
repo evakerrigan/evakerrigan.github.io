@@ -1,9 +1,10 @@
-// Цвета: строгая чёрно-белая палитра
+// Цвета: строгая чёрно-белая палитра.
+// Значения — CSS-переменные, светлая и тёмная темы задаются в global.scss.
 
-$color-main-bg: #ffffff; // Фон страницы
-$color-text: #111111; // Основной текст, рамки
-$color-muted: #555555; // Второстепенный текст
-$color-line: #d4d4d4; // Тонкие разделители
+$color-main-bg: var(--color-bg); // Фон страницы
+$color-text: var(--color-text); // Основной текст, рамки
+$color-muted: var(--color-muted); // Второстепенный текст
+$color-line: var(--color-line); // Тонкие разделители
 
 //стили ErrorBoundary
 $danger-color: #c24f59;

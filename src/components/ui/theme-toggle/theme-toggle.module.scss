@@ -1,0 +1,42 @@
+@use '../../../styles/variables' as *;
+
+.themeToggle {
+  display: inline-flex;
+  padding: 4px;
+  color: $color-muted;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text;
+  }
+
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &__toDark {
+    display: block;
+  }
+
+  &__toLight {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) & {
+    .themeToggle__toDark {
+      display: none;
+    }
+
+    .themeToggle__toLight {
+      display: block;
+    }
+  }
+}

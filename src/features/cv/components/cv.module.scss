@@ -6,6 +6,7 @@
 }
 
 .cv {
+  position: relative;
   flex: 1;
   max-width: 980px;
   padding: 64px 32px 96px;
@@ -15,6 +16,19 @@
 
   @media (max-width: $breakpoint-sm) {
     padding: 40px 16px 64px;
+  }
+
+  // Sits in the top padding, above the header; the icon's 4px padding is
+  // offset so the icon lines up with the content edge.
+  &__theme {
+    position: absolute;
+    top: 22px;
+    right: 28px;
+
+    @media (max-width: $breakpoint-sm) {
+      top: 6px;
+      right: 12px;
+    }
   }
 
   a {
