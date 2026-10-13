@@ -1,6 +1,9 @@
-// Цвета из дизайн-системы
+// Цвета: строгая чёрно-белая палитра
 
-$color-main-bg: #f7f7f7; // Светлый фон главной области
+$color-main-bg: #ffffff; // Фон страницы
+$color-text: #111111; // Основной текст, рамки
+$color-muted: #555555; // Второстепенный текст
+$color-line: #d4d4d4; // Тонкие разделители
 
 //стили ErrorBoundary
 $danger-color: #c24f59;
@@ -9,12 +12,13 @@ $danger-color-dark: #672a30;
 
 // Типографика
 $font-family-base:
-  'Poppins',
+  'IBM Plex Sans',
   -apple-system,
   BlinkMacSystemFont,
   'Segoe UI',
   Roboto,
   sans-serif;
+$font-family-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
 $font-size-base: 14px;
 $font-size-mini: 11px;
 // Отступы

@@ -1,0 +1,289 @@
+@use '../../../styles/variables' as *;
+
+@mixin mono($size) {
+  font-family: $font-family-mono;
+  font-size: $size;
+}
+
+.cv {
+  flex: 1;
+  max-width: 980px;
+  padding: 64px 32px 96px;
+  color: $color-text;
+  font-size: 15px;
+  line-height: 1.55;
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 40px 16px 64px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+
+    &:hover {
+      color: $color-muted;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid $color-text;
+  }
+
+  &__photo {
+    flex: 0 0 auto;
+    display: block;
+    width: 132px;
+    height: 165px; // 4:5
+    object-fit: cover;
+    object-position: 50% 25%;
+    border: 1px solid $color-text;
+  }
+
+  // Stretches to the photo height: role on the top edge, name on the bottom.
+  &__heading {
+    flex: 999 1 360px;
+    align-self: stretch;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  &__role {
+    @include mono(13px);
+    margin: 0;
+    line-height: 1;
+    color: $color-muted;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: 52px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+
+    @media (max-width: $breakpoint-sm) {
+      font-size: 40px;
+    }
+  }
+
+  &__contacts {
+    @include mono(13px);
+    flex: 1 1 280px;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 4px 12px;
+
+    dt {
+      color: $color-muted;
+    }
+
+    dd {
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  &__about {
+    padding-top: 36px;
+
+    p {
+      margin: 0;
+      max-width: 720px;
+      font-size: 17px;
+      line-height: inherit;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 48px;
+  }
+
+  &__sectionTitle {
+    @include mono(13px);
+    margin: 0;
+    font-weight: 500;
+    line-height: inherit;
+    letter-spacing: 0.04em;
+  }
+
+  &__job {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 32px;
+    padding: 20px 0;
+    border-top: 1px solid $color-line;
+
+    &:last-child {
+      border-bottom: 1px solid $color-line;
+    }
+  }
+
+  &__period {
+    @include mono(13px);
+    flex: 0 0 150px;
+    margin: 0;
+    padding-top: 3px;
+    color: $color-muted;
+  }
+
+  &__jobBody {
+    flex: 999 1 480px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__jobTitle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: inherit;
+  }
+
+  // Same look as the grey note next to a company name.
+  &__break {
+    margin: 0;
+    font-size: 18px;
+    line-height: inherit;
+    color: $color-muted;
+  }
+
+  &__jobNote {
+    font-weight: 400;
+    color: $color-muted;
+  }
+
+  &__points {
+    margin: 0;
+    padding-left: 18px;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__text {
+    margin: 0;
+    line-height: inherit;
+  }
+
+  &__stack {
+    @include mono(12px);
+    margin: 2px 0 0;
+    color: $color-muted;
+  }
+
+  &__shots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  &__shot {
+    margin: 0;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__shotLink {
+    display: block;
+  }
+
+  &__shotImage {
+    display: block;
+    width: 220px;
+    height: 138px;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid $color-text;
+    filter: grayscale(1);
+    transition: filter 0.25s ease;
+
+    .cv__shotLink:hover &,
+    .cv__shotLink:focus-visible & {
+      filter: none;
+    }
+  }
+
+  &__shotCaption {
+    @include mono(11px);
+    color: $color-muted;
+  }
+
+  &__projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    border-top: 1px solid $color-text;
+    border-left: 1px solid $color-text;
+  }
+
+  &__project {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    border-right: 1px solid $color-text;
+    border-bottom: 1px solid $color-text;
+  }
+
+  &__projectTitle {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: inherit;
+  }
+
+  &__projectText {
+    margin: 0;
+    font-size: 14px;
+    line-height: inherit;
+  }
+
+  &__projectStack {
+    @include mono(12px);
+    margin: auto 0 0;
+    color: $color-muted;
+  }
+
+  &__skills {
+    @include mono(13px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__skill {
+    padding: 2px 8px;
+    border: 1px solid $color-text;
+  }
+
+  &__education {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+}
