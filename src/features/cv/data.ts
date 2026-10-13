@@ -57,7 +57,9 @@ const PAYKONG_ARCHIVE_URL =
 
 export const profile = {
   name: 'Ксения Любасова',
-  role: 'frontend developer — react / typescript',
+  role: 'frontend developer',
+  // Hidden on phones, where the header next to the photo is narrow.
+  roleStack: 'react / typescript',
   photo: avatar,
   about:
     'Frontend-разработчик: 7+ лет в веб-разработке, из них 3+ года на React, Next.js и TypeScript. Делаю e-commerce, финтех-админки и продуктовые интерфейсы. Дизайнерское образование; свои fullstack проекты веду от макета до деплоя.',

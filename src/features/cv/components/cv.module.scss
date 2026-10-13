@@ -36,6 +36,10 @@
     gap: 24px 40px;
     padding-bottom: 28px;
     border-bottom: 1px solid $color-text;
+
+    @media (max-width: $breakpoint-sm) {
+      gap: 24px 16px;
+    }
   }
 
   &__photo {
@@ -46,24 +50,47 @@
     object-fit: cover;
     object-position: 50% 25%;
     border: 1px solid $color-text;
+
+    // Phones: a smaller photo keeps the role and the name visually together.
+    @media (max-width: $breakpoint-sm) {
+      width: 104px;
+      height: 130px;
+    }
   }
 
   // Stretches to the photo height: role on the top edge, name on the bottom.
   &__heading {
-    flex: 999 1 360px;
+    flex: 999 1 240px;
     align-self: stretch;
     min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
+
+    // Phones: stay next to the photo instead of wrapping under it.
+    @media (max-width: $breakpoint-sm) {
+      flex: 1 1 0;
+    }
   }
 
   &__role {
-    @include mono(13px);
+    @include mono(16px);
     margin: 0;
-    line-height: 1;
-    color: $color-muted;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $color-text;
+
+    // Phones: one word per line ("frontend / developer").
+    @media (max-width: $breakpoint-sm) {
+      width: min-content;
+    }
+  }
+
+  &__roleStack {
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
   }
 
   &__name {
@@ -74,13 +101,18 @@
     letter-spacing: -0.02em;
 
     @media (max-width: $breakpoint-sm) {
-      font-size: 40px;
+      font-size: 30px;
     }
   }
 
   &__contacts {
     @include mono(13px);
     flex: 1 1 280px;
+
+    // Phones: contacts go to their own row under the photo and name.
+    @media (max-width: $breakpoint-sm) {
+      flex-basis: 100%;
+    }
     margin: 0;
     display: grid;
     grid-template-columns: 88px minmax(0, 1fr);
@@ -234,6 +266,11 @@
 
     .cv__shotLink:hover &,
     .cv__shotLink:focus-visible & {
+      filter: none;
+    }
+
+    // Phones and touch screens have no hover, so show colour right away.
+    @media (max-width: $breakpoint-sm), (hover: none) {
       filter: none;
     }
   }

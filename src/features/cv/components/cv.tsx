@@ -111,7 +111,10 @@ export const Cv = () => {
           alt={profile.name}
         />
         <div className={styles.cv__heading}>
-          <p className={styles.cv__role}>{profile.role}</p>
+          <p className={styles.cv__role}>
+            {profile.role}
+            <span className={styles.cv__roleStack}> — {profile.roleStack}</span>
+          </p>
           <h1 className={styles.cv__name}>{profile.name}</h1>
         </div>
         <dl className={styles.cv__contacts}>
