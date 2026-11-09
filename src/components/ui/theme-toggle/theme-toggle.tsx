@@ -3,6 +3,8 @@ import styles from './theme-toggle.module.scss';
 
 type ThemeToggleProps = {
   className?: string;
+  // Accessible name and tooltip, in the page language.
+  label?: string;
 };
 
 const MoonIcon = () => (
@@ -23,13 +25,16 @@ const SunIcon = () => (
  * prerendered HTML is right for either theme without reading it in React.
  * Moon in the light theme (switch to dark), sun in the dark one.
  */
-export const ThemeToggle = ({ className = '' }: ThemeToggleProps) => {
+export const ThemeToggle = ({
+  className = '',
+  label = 'Сменить тему',
+}: ThemeToggleProps) => {
   return (
     <button
       type="button"
       className={`${styles.themeToggle} ${className}`}
-      aria-label="Сменить тему"
-      title="Сменить тему"
+      aria-label={label}
+      title={label}
       onClick={() => setTheme(getTheme() === 'dark' ? 'light' : 'dark')}
     >
       <span className={styles.themeToggle__toDark}>

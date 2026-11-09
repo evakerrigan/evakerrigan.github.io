@@ -1,14 +1,8 @@
-import { Fragment, type ReactNode } from 'react';
+import { Fragment, useEffect, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
-import {
-  contacts,
-  education,
-  jobs,
-  profile,
-  projects,
-  skills,
-  type Job,
-} from '../data';
+import { content, type Job } from '../data';
+import { LANG_PATH, LANG_SWITCH_TITLE, otherLang, type Lang } from '../i18n';
 import styles from './cv.module.scss';
 
 type ExternalLinkProps = {
@@ -102,10 +96,40 @@ const JobItem = ({ job }: { job: Job }) => (
   </article>
 );
 
-export const Cv = () => {
+type CvProps = {
+  lang: Lang;
+};
+
+export const Cv = ({ lang }: CvProps) => {
+  const { meta, ui, profile, contacts, jobs, projects, skills, education } =
+    content[lang];
+  const switchTo = otherLang(lang);
+
+  // The prerendered HTML already has these right; this keeps them in sync
+  // after switching the language in the browser without a page reload.
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.title = meta.title;
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', meta.description);
+  }, [lang, meta]);
+
   return (
     <div className={styles.cv}>
-      <ThemeToggle className={styles.cv__theme} />
+      <div className={styles.cv__controls}>
+        <Link
+          to={LANG_PATH[switchTo]}
+          className={styles.cv__lang}
+          hrefLang={switchTo}
+          lang={switchTo}
+          aria-label={LANG_SWITCH_TITLE[switchTo]}
+          title={LANG_SWITCH_TITLE[switchTo]}
+        >
+          {switchTo.toUpperCase()}
+        </Link>
+        <ThemeToggle label={ui.themeToggle} />
+      </div>
       <header className={styles.cv__header}>
         <img
           className={styles.cv__photo}
@@ -117,7 +141,16 @@ export const Cv = () => {
             {profile.role}
             <span className={styles.cv__roleStack}> — {profile.roleStack}</span>
           </p>
-          <h1 className={styles.cv__name}>{profile.name}</h1>
+          {/* First name above, last name below. The space stays in the
+              text, so copying and bots still get "First Last". */}
+          <h1 className={styles.cv__name}>
+            {profile.name.split(' ').map((part, index) => (
+              <Fragment key={part}>
+                {index > 0 && ' '}
+                <span className={styles.cv__namePart}>{part}</span>
+              </Fragment>
+            ))}
+          </h1>
         </div>
         <dl className={styles.cv__contacts}>
           {contacts.map((contact) => (
@@ -136,7 +169,7 @@ export const Cv = () => {
       </section>
 
       <section className={styles.cv__section}>
-        <h2 className={styles.cv__sectionTitle}>01 / Опыт</h2>
+        <h2 className={styles.cv__sectionTitle}>{ui.experience}</h2>
         <div>
           {jobs.map((job) => (
             <JobItem key={job.company} job={job} />
@@ -145,7 +178,7 @@ export const Cv = () => {
       </section>
 
       <section className={styles.cv__section}>
-        <h2 className={styles.cv__sectionTitle}>02 / Проекты</h2>
+        <h2 className={styles.cv__sectionTitle}>{ui.projects}</h2>
         <div className={styles.cv__projects}>
           {projects.map((project) => (
             <article key={project.name} className={styles.cv__project}>
@@ -162,7 +195,7 @@ export const Cv = () => {
       </section>
 
       <section className={styles.cv__section}>
-        <h2 className={styles.cv__sectionTitle}>03 / Навыки</h2>
+        <h2 className={styles.cv__sectionTitle}>{ui.skills}</h2>
         <div className={styles.cv__skillGroups}>
           {skills.map(({ group, items }) => (
             <div key={group} className={styles.cv__skillGroup}>
@@ -180,7 +213,7 @@ export const Cv = () => {
       </section>
 
       <section className={styles.cv__section}>
-        <h2 className={styles.cv__sectionTitle}>04 / Образование</h2>
+        <h2 className={styles.cv__sectionTitle}>{ui.education}</h2>
         <ul className={styles.cv__education}>
           {education.map((item) => (
             <li key={`${item.school} ${item.course}`}>

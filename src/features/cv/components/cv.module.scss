@@ -18,16 +18,40 @@
     padding: 40px 16px 64px;
   }
 
-  // Sits in the top padding, above the header; the icon's 4px padding is
-  // offset so the icon lines up with the content edge.
-  &__theme {
+  // Language switch and theme toggle. Sit in the top padding, above the
+  // header; the controls' 4px padding is offset so the theme icon lines up
+  // with the content edge.
+  &__controls {
     position: absolute;
     top: 22px;
     right: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
     @media (max-width: $breakpoint-sm) {
       top: 6px;
       right: 12px;
+    }
+  }
+
+  &__lang {
+    @include mono(13px);
+    padding: 4px;
+    font-weight: 500;
+    line-height: 20px; // same height as the theme icon
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease;
+
+    // Doubled class to beat the underlined `.cv a` links.
+    .cv & {
+      color: $color-muted;
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        color: $color-text;
+      }
     }
   }
 
@@ -117,6 +141,11 @@
     @media (max-width: $breakpoint-sm) {
       font-size: 30px;
     }
+  }
+
+  // One word per line on every screen size.
+  &__namePart {
+    display: block;
   }
 
   &__contacts {

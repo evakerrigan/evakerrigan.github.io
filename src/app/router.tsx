@@ -11,7 +11,12 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <HomeRoute />,
+        element: <HomeRoute lang="ru" />,
+      },
+      // Keep in sync with LANG_PATH in src/features/cv/i18n.ts.
+      {
+        path: 'en',
+        element: <HomeRoute lang="en" />,
       },
       {
         path: '*',
